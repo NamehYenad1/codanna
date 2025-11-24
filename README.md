@@ -163,6 +163,27 @@ jq -r '.data[]?[0] | "\(.name) - \(.file_path)"'
 **Linux**: `sudo apt install pkg-config libssl-dev`
 **macOS**: No additional dependencies
 
+### Offline/Corporate Environment Setup
+
+**Note:** This branch (`model_included`) includes pre-packaged models for offline environments.
+
+If you're in a corporate environment where model downloads are blocked:
+
+```bash
+# Install from this branch
+cargo install --path . --all-features
+
+# Copy pre-packaged models
+mkdir -p ~/.codanna/models
+cp -r models/models--Qdrant--all-MiniLM-L6-v2-onnx ~/.codanna/models/
+
+# Use normally
+codanna init
+codanna index . --progress
+```
+
+See [Offline Setup Guide](docs/getting-started/offline-setup.md) for detailed instructions and troubleshooting.
+
 ## Current Status
 
 - 12 supported languages with tree-sitter parsing
